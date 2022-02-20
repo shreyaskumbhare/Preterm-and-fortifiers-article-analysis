@@ -126,7 +126,7 @@ ps_noncontam_clr_plot_rare_bray + theme(panel.background = element_blank(), axis
 
 #comparing the samples at different time points
 metadata5 <- as(sample_data(ps_noncontam_zclr_rare_pseudo), "data.frame")
-adonis(phyloseq::distance(ps_noncontam_zclr_rare_pseudo, method = "bray")~Description, data = metadata5, p.adjust.methods= "fdr", permutations = 99999)###do a pairwise adonis here
+adonis(phyloseq::distance(ps_noncontam_zclr_rare_pseudo, method = "bray")~Description, data = metadata5, p.adjust.methods= "fdr", permutations = 99999, strata = metadata5$SubjectID)###added infant IDs as strata to account for repeated measures.
 
 #beta-dispersion test
 ps_total_noncontam_dist <- phyloseq::distance(ps_noncontam_zclr_rare_pseudo, method = "bray")
@@ -141,7 +141,7 @@ ps_noncontam_rare_plot_jaccard + theme(panel.background = element_blank(), axis.
 #PERMANOVA
 #comparing the samples at different time points
 metadata5 <- as(sample_data(psnoncontam_tru_final_rare), "data.frame")
-adonis(phyloseq::distance(psnoncontam_tru_final_rare, method = "jaccard")~Description, data = metadata5, p.adjust.methods= "fdr", permutations = 99999)###do a pairwise adonis here
+adonis(phyloseq::distance(psnoncontam_tru_final_rare, method = "jaccard")~Description, data = metadata5, p.adjust.methods= "fdr", permutations = 99999, strata = metadata5$SubjectID)###added infant IDs as strata to account for repeated measures.
 
 #beta-dispersion test
 ps_total_noncontam_dist <- phyloseq::distance(psnoncontam_tru_final_rare, method = "jaccard")
